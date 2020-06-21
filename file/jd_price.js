@@ -310,4 +310,3 @@ Date.prototype.format = function (fmt) {
     }
     return fmt;
 }
-© 2020 GitHub, Inc.
