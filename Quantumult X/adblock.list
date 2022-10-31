@@ -41,10 +41,10 @@ hostname = mbs.boc.cn, mlife.jf365.boc.cn, creditcard.bankcomm.com, pic1cdn.cmbc
 ^https?:\/\/creditcard\.bankcomm\.com\/tfimg\/public00\/M00\/39\/02\/trScKGMFjQ2AQtG3AAIfJQR48Bc372\.jpg url reject-200
 
 # > 招商银行
-^https?+:\/\/pic1cdn\.cmbchina\.com\/appinitads\/ url reject-200
-^https?:\/\/resource.cmbchina.com\/fsp\/File\/ClientFacePublic\/.+.gif url reject
+#^https?+:\/\/pic1cdn\.cmbchina\.com\/appinitads\/ url reject-200
+#^https?:\/\/resource.cmbchina.com\/fsp\/File\/ClientFacePublic\/.+.gif url reject
 # > gif url reject 只拦截gif格式的图片
-^https:\/\/s3gw.cmbimg.com\/mbappinitads\/.*.(jpg|png) url reject-200
+#^https:\/\/s3gw.cmbimg.com\/mbappinitads\/.*.(jpg|png) url reject-200
 
 # > 华彩生活
 ^https?:\/\/static\.creditcard\.hxb\.com\.cn\/app\/apps\/group1\/M00\/00\/21\/amRGFWJzJsGAdy7RAAFxgeiCVcw561\.jpg url reject
