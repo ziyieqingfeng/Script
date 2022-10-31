@@ -2,7 +2,7 @@
 # >  某些APP要清除缓存或者重新安装APP,拦截广告才会生效！
 
 
-hostname = mbs.boc.cn, mlife.jf365.boc.cn, creditcard.bankcomm.com, pic1cdn.cmbchina.com, resource.cmbchina.com, s3gw.cmbimg.com, static.creditcard.hxb.com.cn, static.95508.com, mps.95508.com, j5.dfcfw.com, gab.122.gov.cn, m*.amap.com, optimus-ads.amap.com, appconf.mail.163.com, analytics.163.com, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, rp.hpplay.cn, m.360buyimg.com, m.jd.com, api.m.jd.com, ms.jr.jd.com, acs.m.taobao.com, img.alicdn.com, ossgw.alicdn.com, flowplus.meituan.net, wmapi.meituan.com,
+hostname = mbs.boc.cn, mlife.jf365.boc.cn, creditcard.bankcomm.com, pic1cdn.cmbchina.com, resource.cmbchina.com, s3gw.cmbimg.com, static.creditcard.hxb.com.cn, static.95508.com, mps.95508.com, j5.dfcfw.com, gab.122.gov.cn, m*.amap.com, optimus-ads.amap.com, appconf.mail.163.com, analytics.163.com, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, rp.hpplay.cn, m.360buyimg.com, m.jd.com, api.m.jd.com, ms.jr.jd.com, acs.m.taobao.com, img.alicdn.com, ossgw.alicdn.com, flowplus.meituan.net, wmapi.meituan.com,  -redirector*.googlevideo.com, *.googlevideo.com, www.youtube.com, youtubei.googleapis.com, s.youtube.com, youtube.com, xqimg.imedao.com, img.jiemian.com, api.xiachufang.com, img-ys011.didistatic.com, res.xiaojukeji.com,
 
 # > "reject" 策略会返回 HTTP 状态码 404,不附带任何额外内容
 # > "reject-200" 策略会返回 HTTP 状态码 200,不附带任何额外内容
@@ -153,3 +153,32 @@ http:\/\/analytics\.163\.com\/ntes url reject
 ^https?:\/\/img\.meituan\.net\/(adunion|display|midas)\/\w+\.(gif|jpg|jpg\.webp)$ url reject
 ^https?:\/\/p\d.meituan.net\/movie\/.*?\?may_covertWebp url reject-img
 ^https?:\/\/p\d{1}\.meituan\.net\/(adunion|display|linglong|mmc|wmbanner)\/ url reject
+
+# > 大众点评
+^https?:\/\/img\.meituan\.net\/dpmobile\/.*.(gif|jpg) url reject-200
+
+# > 油管
+ctier=[A-Z] url 302 ctier=A
+^https://[\s\S]*\.googlevideo\.com/.*&(oad|ctier) url reject-200
+(^https?:\/\/[\w-]+\.googlevideo\.com\/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+) url 302 $1$2$3
+^https?:\/\/[\w-]+\.googlevideo\.com\/(?!(dclk_video_ads|videoplayback\?)).+&oad url reject
+^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v\d\/player\/ad_break url reject
+^https?:\/\/(www|s)\.youtube\.com\/api\/stats\/ads url reject
+^https?:\/\/(www|s)\.youtube\.com\/(pagead|ptracking) url reject
+^https?:\/\/s\.youtube\.com\/api\/stats\/qoe\?adcontext url reject
+^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next)\? url script-response-body https://raw.githubusercontent.com/app2smile/rules/master/js/youtube.js
+
+# > 雪球（倒计时还在）
+^https?:\/\/xqimg\.imedao\.com\/[a-z0-9]{24}\.jpg$ url reject-200
+
+# > 界面新闻
+^https?:\/\/img\.jiemian\.com\/ads\/ url reject
+
+# > 下厨房
+^https?:\/\/api\.xiachufang\.com\/v\d\/ad/ url reject
+
+# > 滴滴出行（推荐英文版）
+https?://res\.xiaojukeji\.com\/resapi\/activity\/mget url reject-dict
+https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNotices) url reject
+# > 滴滴
+^https?:\/\/img-ys011\.didistatic\.com\/static\/ad_oss\/.*.jpg url reject
