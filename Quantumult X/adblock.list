@@ -2,8 +2,7 @@
 # >  某些APP要清除缓存或者重新安装APP,拦截广告才会生效！
 
 
-hostname = mbs.boc.cn, mlife.jf365.boc.cn, creditcard.bankcomm.com, pic1cdn.cmbchina.com, resource.cmbchina.com, s3gw.cmbimg.com, static.creditcard.hxb.com.cn, static.95508.com, mps.95508.com, j5.dfcfw.com, gab.122.gov.cn, m*.amap.com, optimus-ads.amap.com, appconf.mail.163.com, analytics.163.com, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, rp.hpplay.cn, *.360buyimg.com, *.jd.com, , *.taobao.com, *.alicdn.com, *.meituan.net, *.meituan.com,
-
+hostname = mbs.boc.cn, mlife.jf365.boc.cn, creditcard.bankcomm.com, pic1cdn.cmbchina.com, resource.cmbchina.com, s3gw.cmbimg.com, static.creditcard.hxb.com.cn, static.95508.com, mps.95508.com, j5.dfcfw.com, gab.122.gov.cn, m*.amap.com, optimus-ads.amap.com, appconf.mail.163.com, analytics.163.com, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, rp.hpplay.cn, *.360buyimg.com, *.jd.com, , *.taobao.com, *.alicdn.com, flowplus.meituan.net, wmapi.meituan.com,
 
 # > "reject" 策略会返回 HTTP 状态码 404,不附带任何额外内容
 # > "reject-200" 策略会返回 HTTP 状态码 200,不附带任何额外内容
