@@ -2,7 +2,7 @@
 # >  某些APP要清除缓存或者重新安装APP,拦截广告才会生效！
 
 
-hostname = mbs.boc.cn, mlife.jf365.boc.cn, creditcard.bankcomm.com, pic1cdn.cmbchina.com, resource.cmbchina.com, s3gw.cmbimg.com, static.creditcard.hxb.com.cn, static.95508.com, mps.95508.com, j5.dfcfw.com, gab.122.gov.cn, m*.amap.com, optimus-ads.amap.com, appconf.mail.163.com, analytics.163.com, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, rp.hpplay.cn, *.360buyimg.com, *.jd.com, , *.taobao.com, *.alicdn.com
+hostname = mbs.boc.cn, mlife.jf365.boc.cn, creditcard.bankcomm.com, pic1cdn.cmbchina.com, resource.cmbchina.com, s3gw.cmbimg.com, static.creditcard.hxb.com.cn, static.95508.com, mps.95508.com, j5.dfcfw.com, gab.122.gov.cn, m*.amap.com, optimus-ads.amap.com, appconf.mail.163.com, analytics.163.com, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, rp.hpplay.cn, *.360buyimg.com, *.jd.com, , *.taobao.com, *.alicdn.com, *.meituan.net, *.meituan.com,
 
 
 # > "reject" 策略会返回 HTTP 状态码 404,不附带任何额外内容
@@ -138,3 +138,19 @@ http:\/\/analytics\.163\.com\/ntes url reject
 # > 飞猪
 ^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.activity\.querytmsresources\/1\.0\?type=originaljson url reject-img
 ^https?:\/\/gw\.alicdn\.com\/imgextra\/\w{2}\/[\w!]+-\d-tps-\d{3}-\d{4}\.(jpg|png)$ url reject
+
+# > 美团
+^https?+:\/\/img\.meituan\.net\/(?>adunion|display|midas)\/.+?\.(gif|jpg|jpg\.webp)$ url reject-200
+^https?+:\/\/p\d\.meituan\.net\/wmbanner\/[A-Za-z0-9]+?\.jpg url reject-200
+^https?+:\/\/p\d\.meituan\.net\/movie\/[A-Za-z0-9]+?\.jpg\?may_covertWebp url reject-200
+^https?:\/\/s3plus\.meituan\.net\/.+?\/linglong\/ url reject
+^https?:\/\/s3plus\.meituan\.net\/v1\/mss_a002 url reject-img
+^https?:\/\/www\.meituan\.com\/api\/v\d\/appstatus\? url reject
+^https?:\/\/wmapi\.meituan\.com\/api\/v\d+\/loadInfo\? url reject
+^https?:\/\/wmapi\.meituan\.com\/api\/v\d\/startpicture url reject
+^https?:\/\/flowplus\.meituan\.net\/v\d\/\w+\/linglong\/\d+\.(gif|jpg|mp4) url reject
+^https?:\/\/(s3plus|flowplus)\.meituan\.net\/v\d\/\w+\/linglong\/\w+\.(gif|jpg|mp4) url reject
+^https?:\/\/apimobile\.meituan\.com\/appupdate\/mach\/checkUpdate? url reject
+^https?:\/\/img\.meituan\.net\/(adunion|display|midas)\/\w+\.(gif|jpg|jpg\.webp)$ url reject
+^https?:\/\/p\d.meituan.net\/movie\/.*?\?may_covertWebp url reject-img
+^https?:\/\/p\d{1}\.meituan\.net\/(adunion|display|linglong|mmc|wmbanner)\/ url reject
