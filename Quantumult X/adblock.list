@@ -2,7 +2,7 @@
 # >  某些APP要清除缓存或者重新安装APP,拦截广告才会生效！
 
 
-hostname = mbs.boc.cn, mlife.jf365.boc.cn, creditcard.bankcomm.com, pic1cdn.cmbchina.com, resource.cmbchina.com, s3gw.cmbimg.com, static.creditcard.hxb.com.cn, static.95508.com, mps.95508.com, j5.dfcfw.com, gab.122.gov.cn, m*.amap.com, optimus-ads.amap.com, appconf.mail.163.com, analytics.163.com, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, rp.hpplay.cn, m.360buyimg.com, m.jd.com, api.m.jd.com, ms.jr.jd.com, acs.m.taobao.com, img.alicdn.com, ossgw.alicdn.com, flowplus.meituan.net, wmapi.meituan.com,  -redirector*.googlevideo.com, *.googlevideo.com, www.youtube.com, youtubei.googleapis.com, s.youtube.com, youtube.com, xqimg.imedao.com, img.jiemian.com, api.xiachufang.com, img-ys011.didistatic.com, res.xiaojukeji.com, cloud.189.cn, api.cloud.189.cn, zt-app.go189.cn, appapi.huazhu.com, api.douban.com, ad.12306.cn, homefront.qunar.com, source.qunarzz.com, client.qunar.com, *.xima*.*, *.xmcdn.*, pages.xiaohongshu.com, www.xiaohongshu.com, edith.xiaohongshu.com, api-access.pangolin-sdk-toutiao.com, mi.gdt.qq.com, open.e.kuaishou.com
+hostname = mbs.boc.cn, mlife.jf365.boc.cn, creditcard.bankcomm.com, static.creditcard.hxb.com.cn, static.95508.com, mps.95508.com, j5.dfcfw.com, gab.122.gov.cn, m*.amap.com, optimus-ads.amap.com, appconf.mail.163.com, analytics.163.com, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, rp.hpplay.cn, m.360buyimg.com, m.jd.com, api.m.jd.com, ms.jr.jd.com, acs.m.taobao.com, img.alicdn.com, ossgw.alicdn.com, flowplus.meituan.net, wmapi.meituan.com,  -redirector*.googlevideo.com, *.googlevideo.com, www.youtube.com, youtubei.googleapis.com, s.youtube.com, youtube.com, xqimg.imedao.com, img.jiemian.com, api.xiachufang.com, img-ys011.didistatic.com, res.xiaojukeji.com, cloud.189.cn, api.cloud.189.cn, zt-app.go189.cn, appapi.huazhu.com, api.douban.com, ad.12306.cn, homefront.qunar.com, source.qunarzz.com, client.qunar.com, *.xima*.*, *.xmcdn.*, pages.xiaohongshu.com, www.xiaohongshu.com, edith.xiaohongshu.com, api-access.pangolin-sdk-toutiao.com, mi.gdt.qq.com, open.e.kuaishou.com
 
 # > "reject" 策略会返回 HTTP 状态码 404,不附带任何额外内容
 # > "reject-200" 策略会返回 HTTP 状态码 200,不附带任何额外内容
@@ -39,12 +39,6 @@ hostname = mbs.boc.cn, mlife.jf365.boc.cn, creditcard.bankcomm.com, pic1cdn.cmbc
 ^https?:\/\/creditcard\.bankcomm\.com\/tfimg\/public00\/M00\/39\/CA\/trScKGMi3diAa_MaAANuAJr-MTY198\.jpg url reject-200
 ^https?:\/\/creditcard\.bankcomm\.com\/tfimg\/public00\/M00\/39\/0A\/trScKGMF4mqAAbhcAALpnv-7wPE647\.jpg url reject-200
 ^https?:\/\/creditcard\.bankcomm\.com\/tfimg\/public00\/M00\/39\/02\/trScKGMFjQ2AQtG3AAIfJQR48Bc372\.jpg url reject-200
-
-# > 招商银行
-#^https?+:\/\/pic1cdn\.cmbchina\.com\/appinitads\/ url reject-200
-#^https?:\/\/resource.cmbchina.com\/fsp\/File\/ClientFacePublic\/.+.gif url reject
-# > gif url reject 只拦截gif格式的图片
-#^https:\/\/s3gw.cmbimg.com\/mbappinitads\/.*.(jpg|png) url reject-200
 
 # > 华彩生活
 ^https?:\/\/static\.creditcard\.hxb\.com\.cn\/app\/apps\/group1\/M00\/00\/21\/amRGFWJzJsGAdy7RAAFxgeiCVcw561\.jpg url reject
