@@ -2,7 +2,7 @@
 # >  某些APP要清除缓存或者重新安装APP,拦截广告才会生效！
 
 
-hostname = mbs.boc.cn, mlife.jf365.boc.cn, creditcard.bankcomm.com, pic1cdn.cmbchina.com, resource.cmbchina.com, s3gw.cmbimg.com, static.creditcard.hxb.com.cn, static.95508.com, mps.95508.com, j5.dfcfw.com, gab.122.gov.cn, m*.amap.com, optimus-ads.amap.com, appconf.mail.163.com, analytics.163.com, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, rp.hpplay.cn, m.360buyimg.com, m.jd.com, api.m.jd.com, ms.jr.jd.com, acs.m.taobao.com, img.alicdn.com, ossgw.alicdn.com, flowplus.meituan.net, wmapi.meituan.com,  -redirector*.googlevideo.com, *.googlevideo.com, www.youtube.com, youtubei.googleapis.com, s.youtube.com, youtube.com, xqimg.imedao.com, img.jiemian.com, api.xiachufang.com, img-ys011.didistatic.com, res.xiaojukeji.com,
+hostname = mbs.boc.cn, mlife.jf365.boc.cn, creditcard.bankcomm.com, pic1cdn.cmbchina.com, resource.cmbchina.com, s3gw.cmbimg.com, static.creditcard.hxb.com.cn, static.95508.com, mps.95508.com, j5.dfcfw.com, gab.122.gov.cn, m*.amap.com, optimus-ads.amap.com, appconf.mail.163.com, analytics.163.com, pan.baidu.com, ndstatic.cdn.bcebos.com, staticsns.cdn.bcebos.com, issuecdn.baidupcs.com, rp.hpplay.cn, m.360buyimg.com, m.jd.com, api.m.jd.com, ms.jr.jd.com, acs.m.taobao.com, img.alicdn.com, ossgw.alicdn.com, flowplus.meituan.net, wmapi.meituan.com,  -redirector*.googlevideo.com, *.googlevideo.com, www.youtube.com, youtubei.googleapis.com, s.youtube.com, youtube.com, xqimg.imedao.com, img.jiemian.com, api.xiachufang.com, img-ys011.didistatic.com, res.xiaojukeji.com, cloud.189.cn, api.cloud.189.cn, zt-app.go189.cn, appapi.huazhu.com, api.douban.com, ad.12306.cn, homefront.qunar.com, source.qunarzz.com, client.qunar.com, *.xima*.*, *.xmcdn.*, pages.xiaohongshu.com, www.xiaohongshu.com, edith.xiaohongshu.com, api-access.pangolin-sdk-toutiao.com, mi.gdt.qq.com, open.e.kuaishou.com
 
 # > "reject" 策略会返回 HTTP 状态码 404,不附带任何额外内容
 # > "reject-200" 策略会返回 HTTP 状态码 200,不附带任何额外内容
@@ -182,3 +182,84 @@ https?://res\.xiaojukeji\.com\/resapi\/activity\/mget url reject-dict
 https?:\/\/res\.xiaojukeji\.com\/resapi\/activity\/get(Ruled|Preload|PasMultiNotices) url reject
 # > 滴滴
 ^https?:\/\/img-ys011\.didistatic\.com\/static\/ad_oss\/.*.jpg url reject
+
+# > 中国电信
+^https?:\/\/cloud\.189\.cn\/include\/splash\/ url reject
+^https?:\/\/zt-app\.go189\.cn\/zt-app\/welcome\/.*?Animation url reject-img
+
+# > 天翼云盘
+^https?:\/\/api\.cloud\.189\.cn\/guns\/img\/recommendedPosition\/.*.jpg url reject-200
+^https?:\/\/cloud\.189\.cn\/include\/splash\/20170512mother\/.*.jpg url reject-200
+
+# > 华住
+^https?:\/\/appapi\.huazhu\.com:\d{4}\/client\/app\/getAppStartPage\/ url reject
+
+# > 豆瓣
+^https?:\/\/api\.douban\.com\/v2\/app_ads\/splash url reject-dict
+^https?:\/\/api\.douban\.com\/b.*\/common_ads\?.* url reject-dict
+^https?:\/\/img\d\.doubanio\.com\/view\/dale-online\/dale_ad\/ url reject
+^https?:\/\/frodo.douban.com\/api\/v2\/movie\/banner url reject
+^https?:\/\/erebor\.douban\.com\/count\/\?ad= url reject
+^https?+:\/\/api\.douban\.com\/v\d\/app_ads\/ url reject-200
+
+# > 12306
+^https?:\/\/ad\.12306\.cn\/ url reject
+
+# > 去哪儿
+https://homefront.qunar.com/front/splash/ad url reject
+^https?:\/\/source\.qunarzz\.com\/site\/images\/wns\/.*.jpg url reject
+^https?:\/\/client\.qunar\.com\/pitcher-proxy\?qrt=p_splashAd url reject-img
+
+# > 喜马拉雅
+# > 喜马拉雅_修复轮播Ad失效Bug
+^https?:\/\/.*\.xima.*\.com\/discovery-feed\/focus\/queryF url reject
+# > 喜马拉雅_播放页_Live
+^https?:\/\/.*\.xima.*\.com\/mobile-playpage\/view\/ url reject
+# > 喜马拉雅_MyInfo红点提醒
+^https?:\/\/.*\.xima.*\.com\/chaos-notice-web\/v1\/message\/preview\/list url reject
+# > 喜马拉雅_屏蔽大红包Tips
+^https?:\/\/.*\.xima.*\.com\/social-web\/bottomTabs\/dynamicEntrance\/status url reject
+# > 喜马拉雅_屏蔽gif弹窗Ad
+^https?:\/\/.*\.xmcdn\.com\/\w{8}\/\w{4}-\w{16}\/.+gif$ url reject
+# > 喜马拉雅_屏蔽Aged请求
+^https?:\/\/.*\.xima.*\.com\/(dog-portal\/checkOld|(child-mobile\/child|aged-mobile\/aged)\/mode\/query) url reject
+# > 喜马拉雅_部分Tab弹窗
+^https?:\/\/.*\.xima.*\.com\/discovery-feed\/isShowUserGiftPendant url reject
+# > 喜马拉雅_屏蔽红点提示
+^https?:\/\/.*\.xima.*\.com\/mobile-user\/unread url reject
+# > 喜马拉雅_屏蔽minor请求
+^https?:\/\/.*\.xima.*\.com/mobile-user/minorProtection/pop url reject
+# > 喜马拉雅_屏蔽隐私搜集
+^https?:\/\/.*\.xima.*\.com\/collector\/xl\/v\d url reject
+# > 喜马拉雅_屏蔽版本更新
+^https?:\/\/.*\.xima.*\.com\/butler-portal\/versionCheck url reject
+# > 喜马拉雅_屏蔽开屏广告
+^https?:\/\/(adse\.wsa|adse|adbehavior|xdcs-collector)\.xima.*\.com\/.* url reject
+# > 喜马拉雅_屏蔽位置请求
+^https?:\/\/.*\.xima.*\.com\/mobile\/discovery\/v\d\/location url reject
+# > 喜马拉雅_屏蔽热搜词
+^https?:\/\/.*\.xima.*\.com\/hotWord url reject
+# > 喜马拉雅_屏蔽搜索框定时_Ad
+^https?:\/\/.*\.xima.*\.com\/guideWord url reject
+# > 喜马拉雅_屏蔽实时Ad请求
+^https?:\/\/.*\.xima.*\.com\/api\/v\d\/adRealTime url reject
+# > 喜马拉雅_屏蔽ting_Ad
+^https?:\/\/.*\.xima.*\.com\/ting\/(loading|feed|home)? url reject
+# > 喜马拉雅_屏蔽首页滚动_Ad
+^https?:\/\/.*\.xima.*\.com\/discovery-feed\/v\d\/mix url script-response-body https://gitlab.com/ddgksf2013/Cuttlefish/-/raw/master/Script/xmly_json.js
+# > 喜马拉雅_屏蔽Tab页滚动_Ad
+^https?:\/\/.*\.xima.*\.com\/discovery-category\/v\d/category url script-response-body https://gitlab.com/ddgksf2013/Cuttlefish/-/raw/master/Script/xmly_json.js
+# > 喜马拉雅_去除我的页面Ad_Tag
+^https?:\/\/.*\.xima.*\.com\/mobile-user\/v\d\/homePage url script-response-body https://gitlab.com/ddgksf2013/Cuttlefish/-/raw/master/Script/xmly_json.js
+
+# > 小红书
+^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config url script-response-body https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/xiaohongshu/xiaohongshu.ad.js
+^https:\/\/www\.xiaohongshu\.com\/api\/sns\/v1\/ads\/apple\/record* url reject
+^https:\/\/www\.xiaohongshu\.com\/api\/sns\/v1\/tag\/ads_engage* url reject
+^https:\/\/www\.xiaohongshu\.com\/api\/sns\/v1\/ads\/resource* url reject
+^https:\/\/pages\.xiaohongshu\.com\/data\/native\/matrix_switches* url reject
+^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/search\/hot_list url response-body items":\[.+\] response-body items":[]
+^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v\d\/search\/trending url response-body queries":\[.+\] response-body queries":[]
+
+> 快手联盟,优量汇,穿山甲
+^https:\/\/(api-access\.pangolin-sdk-toutiao\.com\/api\/ad\/union\/sdk\/get_ads|open\.e\.kuaishou\.com\/rest\/e\/v3\/open\/univ$|mi\.gdt\.qq\.com\/gdt_mview\.fcg\?) url script-response-body https://raw.githubusercontent.com/app2smile/rules/master/js/adsense.js
