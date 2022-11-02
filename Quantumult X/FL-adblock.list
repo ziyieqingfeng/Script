@@ -18,7 +18,6 @@ host-keyword, c-hzgt2.getui.com, reject
 host-keyword, mpos-pic.helipay.com, reject
 
 # > 高德
-host-keyword, ossgw.alicdn.com,REJECT
 HOST-SUFFIX,adiu.amap.com,REJECT
 HOST,aboard.apilocate.amap.com,REJECT
 HOST,apiinit.amap.com,REJECT
