@@ -1,0 +1,129 @@
+# > /*  APP开屏广告拦截，APP启动广告拦截！
+# > 某些APP要清除缓存或者重新安装APP，拦截广告才会生效！
+
+# > 云闪付
+host-keyword, switch.cup.com.cn, reject
+host-keyword, sdk.open.talk.getui.net, reject
+host-keyword, sdk-conf.getui.com, reject
+host-keyword, cm-10-138.getui.com, reject
+host-keyword, ads.95516.com, reject
+
+# > 买单吧
+host-keyword, c-hzgt2.getui.com, reject
+
+# > 雪球（可以去掉倒计时，但是误杀很多图片，默认关闭）
+# > host-keyword, xqimg.imedao.com, reject
+
+# > 小利生活
+host-keyword, mpos-pic.helipay.com, reject
+
+# > 高德
+HOST-SUFFIX,adiu.amap.com,REJECT
+HOST,aboard.apilocate.amap.com,REJECT
+HOST,apiinit.amap.com,REJECT
+HOST,icloud-amap.com,REJECT
+HOST,logs.amap.com,REJECT
+HOST-SUFFIX,dualstack-logs.amap.com,REJECT
+HOST-SUFFIX,logs.amap.com,REJECT
+HOST-SUFFIX,optimus-ads.amap.com,REJECT
+HOST-SUFFIX,page.amap.com,REJECT
+HOST,optimus-ads.amap.com, reject
+HOST,optimus-ads.amap.com.w.alikunlun.com, reject
+HOST-SUFFIX, shouji.sougou.com, reject
+HOST, u51.me, reject
+HOST-SUFFIX, u51.me, reject
+
+# > 美团
+HOST, flowplus.meituan.net, reject
+HOST-SUFFIX, analytics.meituan.net, reject
+HOST-SUFFIX, meituan.xn--io0a7i, reject
+HOST-SUFFIX, meituan.yoga, reject
+HOST-SUFFIX, meituangov.cn, reject
+HOST-SUFFIX, report.meituan.com, reject
+HOST-SUFFIX, wmlog.meituan.com, reject
+
+# > 交管12123
+host, static.122.gov.cn, reject
+HOST-SUFFIX, v3.fstats.xyz, reject
+HOST-SUFFIX, wss.haoyundmn.com, reject
+HOST-SUFFIX, new.xiongzhangad.com, reject
+HOST-SUFFIX, alexametrics.com, reject
+HOST-KEYWORD, in-page-push, reject
+
+# > 中国电信
+HOST,ad.21cn.com, reject
+HOST,ad.k.21cn.com, reject
+HOST,admarket.21cn.com, reject
+HOST,adshows.21cn.com, reject
+
+# > 爱奇艺
+host, cr-status.iqiyi.com, reject
+host-suffix, cupid.iqiyi.com, reject
+host, f74f7f7765f8a2f6.ngaa.net.cn, reject
+host, ef-dongfeng.tanx.com, reject
+host, iqiyim.adtrack.enlightent.cn, reject
+HOST,dig.bdurl.net, reject
+HOST,ads3-normal-lq.zijieapi.com, reject
+HOST,ads5-normal-lq.zijieapi.com, reject
+
+# > 喜马拉雅
+HOST,adbehavior.ximalaya.com, reject
+HOST,adwbs.ximalaya.com, reject
+HOST-SUFFIX,ad.test.ximalaya.com, reject
+HOST-SUFFIX,adse.test.ximalaya.com, reject
+HOST-SUFFIX,adweb.test.ximalaya.com, reject
+HOST-SUFFIX,adweb.ximalaya.com, reject
+HOST-SUFFIX,linkeye.ximalaya.com, reject
+HOST-SUFFIX,location.ximalaya.com, reject
+HOST-SUFFIX,xdcs-collector.ximalaya.com, reject
+HOST-SUFFIX,ad.ximalaya.com, reject
+HOST-SUFFIX,adse.ximalaya.com, reject
+HOST-SUFFIX,adse.wsa.ximalaya.com, reject
+HOST-SUFFIX,adbehavior.wsa.ximalaya.com, reject
+HOST-SUFFIX,adsebs.ximalaya.com, reject
+HOST-SUFFIX,adbs.ximalaya.com, reject
+# >小红书
+HOST,ads-img-qc.xhscdn.com, reject
+HOST,ads-video-al.xhscdn.com, reject
+HOST,ads-video-qc.xhscdn.com, reject
+HOST,t-ads.xiaohongshu.com, reject
+
+# > 淘宝
+HOST-SUFFIX,apoll.m.taobao.com, reject
+HOST-SUFFIX,h-adashx.ut.taobao.com, reject
+HOST-SUFFIX,w.m.taobao.com, reject
+HOST,tunion-api.m.taobao.com, reject
+HOST-SUFFIX,ai.m.taobao.com, reject
+HOST-SUFFIX,re.m.taobao.com, reject
+HOST-SUFFIX,agoodm.m.taobao.com, reject
+HOST-SUFFIX,ai.taobao.com, reject
+HOST-SUFFIX,api.waptest.taobao.com, reject
+HOST-SUFFIX,dsp.simba.taobao.com, reject
+HOST-SUFFIX,fav.simba.taobao.com, reject
+HOST-SUFFIX,m.simba.taobao.com, reject
+HOST-SUFFIX,mclick.simba.taobao.com, reject
+HOST-SUFFIX,re.taobao.com, reject
+HOST-SUFFIX,redirect.simba.taobao.com, reject
+HOST-SUFFIX,simba.m.taobao.com, reject
+HOST-SUFFIX,srd.simba.taobao.com, reject
+HOST-SUFFIX,temai.taobao.com, reject
+HOST-SUFFIX,textlink.simba.taobao.com, reject
+HOST-SUFFIX,unitacs.m.taobao.com, reject
+HOST-SUFFIX,acs4baichuan.m.taobao.com, reject
+HOST-SUFFIX,adashbc.ut.taobao.com, reject
+HOST-SUFFIX,adash-c.ut.taobao.com, reject
+HOST-SUFFIX,adashxgc.ut.taobao.com, reject
+HOST-SUFFIX,adashx4yt.m.taobao.com, reject
+HOST-SUFFIX,tunion-api.m.taobao.com, reject
+HOST-SUFFIX,tns.simba.taobao.com, reject
+HOST-SUFFIX,click.mz.simba.taobao.com, reject
+HOST-SUFFIX,click.simba.taobao.com, reject
+HOST-SUFFIX,click.tz.simba.taobao.com, reject
+HOST-SUFFIX,stat.simba.taobao.com, reject
+HOST-SUFFIX,m-adash.m.taobao.com, reject
+HOST-SUFFIX,adashbc.m.taobao.com, reject
+
+# > 抖音
+host-keyword,bds.snssdk.com, reject
+host-keyword,p6-ad-sign.byteimg.com, reject
+host-keyword,p3.pstatp.com, reject
