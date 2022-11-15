@@ -245,12 +245,7 @@ https://homefront.qunar.com/front/splash/ad url reject
 ^https?:\/\/.*\.xima.*\.com\/api\/v\d\/adRealTime url reject
 # > 喜马拉雅_屏蔽ting_Ad
 ^https?:\/\/.*\.xima.*\.com\/ting\/(loading|feed|home)? url reject
-# > 喜马拉雅_屏蔽首页滚动_Ad
-^https?:\/\/.*\.xima.*\.com\/discovery-feed\/v\d\/mix url script-response-body https://gitlab.com/ddgksf2013/Cuttlefish/-/raw/master/Script/xmly_json.js
-# > 喜马拉雅_屏蔽Tab页滚动_Ad
-^https?:\/\/.*\.xima.*\.com\/discovery-category\/v\d/category url script-response-body https://gitlab.com/ddgksf2013/Cuttlefish/-/raw/master/Script/xmly_json.js
-# > 喜马拉雅_去除我的页面Ad_Tag
-^https?:\/\/.*\.xima.*\.com\/mobile-user\/v\d\/homePage url script-response-body https://gitlab.com/ddgksf2013/Cuttlefish/-/raw/master/Script/xmly_json.js
+
 
 # > 小红书
 ^https?:\/\/edith\.xiaohongshu\.com\/api\/sns\/v2\/system_service\/splash_config url script-response-body https://raw.githubusercontent.com/chouchoui/QuanX/master/Scripts/xiaohongshu/xiaohongshu.ad.js
