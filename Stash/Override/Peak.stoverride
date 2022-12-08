@@ -1,0 +1,17 @@
+name: Peak Pro
+desc: 解锁Pro
+
+http:
+  mitm:
+    - "billing.peakcloud.org"
+  script:
+    - match: ^https:\/\/billing\.peakcloud\.org\/billing\/2\/user\/me?
+      name: Peak
+      type: response
+      require-body: true
+      timeout: 10
+
+script-providers:
+  Peak:
+    url: https://raw.githubusercontent.com/ziyieqingfeng/Script/master/Quantumult%20X/File/peak.js
+    interval: 86400
