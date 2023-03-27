@@ -15,21 +15,21 @@ http://39.134.115.163:8080/PLTV/88888910/224/3221225649/index.m3u8
 #EXTINF:-1 tvg-id="7" tvg-name="CCTV-6" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-6.png" group-title="央视",CCTV-6HD
 http://39.134.115.163:8080/PLTV/88888910/224/3221225632/index.m3u8
 #EXTINF:-1 tvg-id="8" tvg-name="CCTV-7" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-7.png" group-title="央视",CCTV-7HD
-http://192.168.2.1:9999/udp/239.45.3.56:5140
+http://39.134.115.163:8080/PLTV/88888910/224/3221225624/index.m3u8
 #EXTINF:-1 tvg-id="9" tvg-name="CCTV-8" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-8.png" group-title="央视",CCTV-8HD
-http://192.168.2.1:9999/udp/239.45.1.71:5140
+http://39.134.115.163:8080/PLTV/88888910/224/3221225631/index.m3u8
 #EXTINF:-1 tvg-id="10" tvg-name="CCTV-9" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-9.png" group-title="央视",CCTV-9HD
-http://192.168.2.1:9999/udp/239.45.3.4:5140
+http://39.134.115.163:8080/PLTV/88888910/224/3221225646/index.m3u8
 #EXTINF:-1 tvg-id="11" tvg-name="CCTV-10" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-10.png" group-title="央视",CCTV-10HD
-http://192.168.2.1:9999/udp/239.45.3.8:5140
+http://39.134.115.163:8080/PLTV/88888910/224/3221225636/index.m3u8
 #EXTINF:-1 tvg-id="12" tvg-name="CCTV-11" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-11.png" group-title="央视",CCTV-11HD
-http://192.168.2.1:9999/udp/239.45.0.18:5140
+http://39.135.138.59:18890/PLTV/88888910/224/3221225628/index.m3u8
 #EXTINF:-1 tvg-id="13" tvg-name="CCTV-12" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-12.png" group-title="央视",CCTV-12HD
-http://192.168.2.1:9999/udp/239.45.3.10:5140
+http://39.134.115.163:8080/PLTV/88888910/224/3221225637/index.m3u8
 #EXTINF:-1 tvg-id="14" tvg-name="CCTV-13" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-13.png" group-title="央视",CCTV-13HD
-http://192.168.2.1:9999/udp/239.45.0.19:5140
+http://39.134.115.163:8080/PLTV/88888910/224/3221225638/index.m3u8
 #EXTINF:-1 tvg-id="15" tvg-name="CCTV-14" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-14.png" group-title="央视",CCTV-14HD
-http://192.168.2.1:9999/udp/239.45.3.23:5140
+http://116.199.5.52:8114/00000000/index.m3u8?Fsv_CMSID=&Fsv_SV_PARAM1=0&Fsv_ShiftEnable=0&Fsv_ShiftTsp=0&Fsv_chan_hls_se_idx=54&Fsv_cid=0&Fsv_ctype=LIVES&Fsv_ctype=LIVES&Fsv_filetype=1&Fsv_otype=1&Fsv_otype=1&Fsv_rate_id=0&FvSeid=5abd1660af1babb4&Pcontent_id=&Provider_id=
 #EXTINF:-1 tvg-id="16" tvg-name="CCTV-15" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-15.png" group-title="央视",CCTV-15HD
 http://192.168.2.1:9999/udp/239.45.0.20:5140
 #EXTINF:-1 tvg-id="17" tvg-name="CCTV-16" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-16.png" group-title="央视",CCTV-16HD
