@@ -13,7 +13,7 @@ http://39.134.115.163:8080/PLTV/88888910/224/3221225633/index.m3u8
 #EXTINF:-1 tvg-id="6" tvg-name="CCTV-5+" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-5+.png" group-title="央视",CCTV-5+HD
 http://39.134.115.163:8080/PLTV/88888910/224/3221225649/index.m3u8
 #EXTINF:-1 tvg-id="7" tvg-name="CCTV-6" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-6.png" group-title="央视",CCTV-6HD
-http://192.168.2.1:9999/udp/239.45.1.70:5140
+http://39.134.115.163:8080/PLTV/88888910/224/3221225632/index.m3u8
 #EXTINF:-1 tvg-id="8" tvg-name="CCTV-7" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-7.png" group-title="央视",CCTV-7HD
 http://192.168.2.1:9999/udp/239.45.3.56:5140
 #EXTINF:-1 tvg-id="9" tvg-name="CCTV-8" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-8.png" group-title="央视",CCTV-8HD
