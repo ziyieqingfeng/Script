@@ -29,13 +29,13 @@ http://39.134.115.163:8080/PLTV/88888910/224/3221225637/index.m3u8
 #EXTINF:-1 tvg-id="14" tvg-name="CCTV-13" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-13.png" group-title="央视",CCTV-13HD
 http://39.134.115.163:8080/PLTV/88888910/224/3221225638/index.m3u8
 #EXTINF:-1 tvg-id="15" tvg-name="CCTV-14" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-14.png" group-title="央视",CCTV-14HD
-http://116.199.5.52:8114/00000000/index.m3u8?Fsv_CMSID=&Fsv_SV_PARAM1=0&Fsv_ShiftEnable=0&Fsv_ShiftTsp=0&Fsv_chan_hls_se_idx=54&Fsv_cid=0&Fsv_ctype=LIVES&Fsv_ctype=LIVES&Fsv_filetype=1&Fsv_otype=1&Fsv_otype=1&Fsv_rate_id=0&FvSeid=5abd1660af1babb4&Pcontent_id=&Provider_id=
+http://192.168.2.1:9999/udp/239.45.0.10:5140
 #EXTINF:-1 tvg-id="16" tvg-name="CCTV-15" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-15.png" group-title="央视",CCTV-15HD
-http://192.168.2.1:9999/udp/239.45.0.20:5140
+http://116.199.5.52:8114/00000000/index.m3u8?Fsv_CMSID=&Fsv_SV_PARAM1=0&Fsv_ShiftEnable=0&Fsv_ShiftTsp=0&Fsv_chan_hls_se_idx=54&Fsv_cid=0&Fsv_ctype=LIVES&Fsv_ctype=LIVES&Fsv_filetype=1&Fsv_otype=1&Fsv_otype=1&Fsv_rate_id=0&FvSeid=5abd1660af1babb4&Pcontent_id=&Provider_id=
 #EXTINF:-1 tvg-id="17" tvg-name="CCTV-16" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-16.png" group-title="央视",CCTV-16HD
 http://192.168.2.1:9999/udp/239.45.0.10:5140
 #EXTINF:-1 tvg-id="18" tvg-name="CCTV-17" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CCTV-17.png" group-title="央视",CCTV-17HD
-http://192.168.2.1:9999/udp/239.45.3.52:5140
+http://39.134.115.163:8080/PLTV/88888910/224/3221225908/index.m3u8
 #EXTINF:-1 tvg-id="19" tvg-name="CETV-1" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CETV-1.png" group-title="央视",CETV-1HD
 http://192.168.2.1:9999/udp/239.45.1.125:5140
 #EXTINF:-1 tvg-id="20" tvg-name="CETV-4" tvg-logo="https://tvlogo-1251833775.cos.ap-shanghai.myqcloud.com/cctv/CETV-4.png" group-title="央视",CETV-4HD
