@@ -22,3 +22,4 @@ payload:
   - DOMAIN-SUFFIX,docker.com
   - DOMAIN-SUFFIX,themoviedb.org
   - DOMAIN-SUFFIX,histar.tv
+  - DOMAIN-SUFFIX,vhome.tv
