@@ -17,6 +17,7 @@ payload:
 
   # Tiktok
   - DOMAIN-SUFFIX,tiktokv.us
+  - DOMAIN-SUFFIX,tiktokcdn-us.com
 
   # other
   - DOMAIN-SUFFIX,zoho.com
