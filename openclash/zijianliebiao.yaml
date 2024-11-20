@@ -1,4 +1,4 @@
-payload: up
+payload:
   # t-mobile WIFI calling
   - IP-CIDR,66.94.0.0/19
   - IP-CIDR,206.29.177.36/32
