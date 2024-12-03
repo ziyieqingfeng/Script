@@ -1,0 +1,8 @@
+payload:
+- DOMAIN-SUFFIX,cloudflare.com,DIRECT
+ # 暴风资源播放器
+- DOMAIN-SUFFIX,vip.vipuuvip.com,DIRECT
+ # 暴风资源播放链接
+- DOMAIN-SUFFIX,7bbffvip.com,DIRECT
+ # 华为吧播放链接
+- DOMAIN-SUFFIX,cos.m3u8hw8.com,DIRECT
