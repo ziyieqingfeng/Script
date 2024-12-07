@@ -6,3 +6,5 @@ payload:
 - DOMAIN-SUFFIX,7bbffvip.com,DIRECT
  # 华为吧播放链接
 - DOMAIN-SUFFIX,cos.m3u8hw8.com,DIRECT
+# 群晖QuickConnect
+- DOMAIN-SUFFIX,quickconnect.to,DIRECT
