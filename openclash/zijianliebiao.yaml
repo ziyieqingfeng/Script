@@ -16,7 +16,7 @@ payload:
   - DOMAIN-SUFFIX,ss.epdg.epc.geo.mnc260.mcc310.pub.3gppnetwork.org
 
   # 华为吧播放链接
-- DOMAIN-SUFFIX,m3u.nikanba.live
+  - DOMAIN-SUFFIX,m3u.nikanba.live
 
 
   # other
