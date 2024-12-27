@@ -3,5 +3,7 @@ payload:
 - DOMAIN-SUFFIX,vip.vipuuvip.com,DIRECT
  # 暴风资源播放链接
 - DOMAIN-SUFFIX,7bbffvip.com,DIRECT
+# 索尼资源播放链接
+- DOMAIN-SUFFIX,qrssv.com,DIRECT
 # 群晖QuickConnect
 - DOMAIN-SUFFIX,quickconnect.to,DIRECT
