@@ -1,4 +1,6 @@
 payload:
+# iptv
+- DOMAIN-SUFFIX,iptv.snailive.top,DIRECT
  # 暴风资源播放器
 - DOMAIN-SUFFIX,vip.vipuuvip.com,DIRECT
  # 暴风资源播放链接
