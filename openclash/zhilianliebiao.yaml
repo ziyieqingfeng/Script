@@ -9,3 +9,6 @@ payload:
 - DOMAIN-SUFFIX,qrssv.com,DIRECT
 # 群晖QuickConnect
 - DOMAIN-SUFFIX,quickconnect.to,DIRECT
+# 直播域名
+- DOMAIN-SUFFIX,cmvideo.cn,DIRECT
+- DOMAIN-SUFFIX,dnsany.com,DIRECT
