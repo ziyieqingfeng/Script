@@ -1,6 +1,6 @@
 payload:
-# iptv
-- DOMAIN-SUFFIX,iptv.snailive.top,DIRECT
+# 下厨房
+- DOMAIN-SUFFIX,xiachuf.com,DIRECT
  # 暴风资源播放器
 - DOMAIN-SUFFIX,vip.vipuuvip.com,DIRECT
  # 暴风资源播放链接
