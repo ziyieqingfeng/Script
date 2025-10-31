@@ -10,6 +10,8 @@ payload:
 # 直播域名
 - DOMAIN-SUFFIX,cmvideo.cn
 - DOMAIN-SUFFIX,dnsany.com
+#熊猫无损音乐
+- DOMAIN-SUFFIX,xmwsyy.com
 #匹配数据发起IP(直连)
 #IP段：192.168.10.201-192.168.10.251 直连
 - SRC-IP-CIDR,192.168.10.201/32
