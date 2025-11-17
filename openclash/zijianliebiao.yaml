@@ -22,8 +22,6 @@ payload:
   - DOMAIN-SUFFIX,live.com
   - DOMAIN-SUFFIX,docker.com
   - DOMAIN-SUFFIX,themoviedb.org
-  - DOMAIN-SUFFIX,histar.tv
-  - DOMAIN-SUFFIX,vhome.tv
   - DOMAIN-SUFFIX,capcutapi.com
   - DOMAIN-SUFFIX,clickbank.com
   - DOMAIN-SUFFIX,proton.me
