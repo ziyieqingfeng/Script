@@ -15,12 +15,14 @@ payload:
   - DOMAIN-SUFFIX,ss.epdg.epc.mnc260.mcc310.pub.3gppnetwork.org
   - DOMAIN-SUFFIX,ss.epdg.epc.geo.mnc260.mcc310.pub.3gppnetwork.org
 
+  #docker
+  - DOMAIN-SUFFIX,docker.com
+  - DOMAIN-SUFFIX,docker.io
 
   # other
   - DOMAIN-SUFFIX,zoho.com
   - DOMAIN-SUFFIX,oracle.com
   - DOMAIN-SUFFIX,live.com
-  - DOMAIN-SUFFIX,docker.com
   - DOMAIN-SUFFIX,themoviedb.org
   - DOMAIN-SUFFIX,capcutapi.com
   - DOMAIN-SUFFIX,clickbank.com
