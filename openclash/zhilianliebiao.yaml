@@ -1,4 +1,6 @@
 payload:
+  #Lucky测ip
+  - DOMAIN-SUFFIX,ipw.cn
   #群晖国内地址，影响系统升级
   - DOMAIN-SUFFIX,synology.com
   #匹配数据发起IP(直连)
