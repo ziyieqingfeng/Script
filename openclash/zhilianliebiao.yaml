@@ -1,6 +1,4 @@
 payload:
-  #群晖国内地址，影响系统升级
-  - DOMAIN-SUFFIX,synology.com
   #匹配数据发起IP(直连)
   #IP段：192.168.10.201-192.168.10.251 直连
   - SRC-IP-CIDR,192.168.10.201/32
