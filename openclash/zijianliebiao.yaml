@@ -15,12 +15,5 @@ payload:
   - DOMAIN-SUFFIX,ss.epdg.epc.mnc260.mcc310.pub.3gppnetwork.org
   - DOMAIN-SUFFIX,ss.epdg.epc.geo.mnc260.mcc310.pub.3gppnetwork.org
 
-  # other
-  - DOMAIN-SUFFIX,live.com
-  - DOMAIN-SUFFIX,capcutapi.com
-  - DOMAIN-SUFFIX,clickbank.com
-  - DOMAIN-SUFFIX,proton.me
-  - DOMAIN-SUFFIX,styleforherbags.com
-  - DOMAIN-SUFFIX,insta360.com
   
   
