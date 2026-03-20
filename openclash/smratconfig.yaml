@@ -180,6 +180,12 @@ proxy-groups:
       - DIRECT
     use:
       - 自建节点
+  - name: Bilibili
+    type: select
+    proxies:
+      - CN Mainland TV
+    use:
+      - 自建节点
   - name: Spotify
     type: select
     proxies:
@@ -210,13 +216,6 @@ proxy-groups:
     type: select
     proxies:
       - Global TV
-    use:
-      - 自建节点
-  - name: Bilibili
-    type: select
-    proxies:
-      - CN Mainland TV
-      - DIRECT
     use:
       - 自建节点
   - name: HBO Max
