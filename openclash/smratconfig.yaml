@@ -1,0 +1,793 @@
+proxy-providers:
+  自建节点:
+    type: http
+    url: "https://xxxxxxx.com/"                 # 填写你的代理订阅地址，确保返回的内容是 Clash 兼容的代理列表，可以用sub-store搭建
+    path: "./proxy_provider/自建节点.yaml"
+    interval: 3600
+    health-check:
+      enable: true
+      url: "http://www.gstatic.com/generate_204"
+      interval: 300
+proxy-groups:
+  - name: Smart-US
+    type: smart
+    use:
+      - 自建节点
+    filter: "美国|US|United States"               # 关键修改:只使用名字中包含“美国”、“US”或“United States”的节点
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 150
+    policy-priority: Sky:1.1;Web:1                # 节点权重:openclash内有窗口填写，但会影响所有smart组，所以在这里设置只影响这个组
+  - name: Smart-JP
+    type: smart
+    use:
+      - 自建节点
+    filter: "日本|JP|Japan"
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 150
+    policy-priority: Dip:1;Sip:1 
+  - name: Smart-Auto
+    type: smart
+    use:
+      - 自建节点
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 150
+    policy-priority: 美国:1.3;日本:0.8 
+  - name: Proxy
+    type: select
+    proxies:
+      - Smart-Auto
+      - Smart-US
+      - Smart-JP
+      - DIRECT
+    use:
+      - 自建节点
+  - name: Domestic
+    type: select
+    proxies:
+      - DIRECT
+      - Proxy
+  - name: Global WEB
+    type: select
+    proxies:
+      - Proxy
+      - Smart-US
+      - Smart-JP
+      - DIRECT
+    use:
+      - 自建节点
+  - name: CN Mainland TV
+    type: select
+    proxies:
+      - DIRECT
+      - Proxy
+  - name: Asian TV
+    type: select
+    proxies:
+      - Proxy
+      - Smart-JP
+      - Smart-US
+    use:
+      - 自建节点
+    filter: "日本|JP|Japan"
+  - name: Global TV
+    type: select
+    proxies:
+      - Proxy
+      - Smart-US
+      - Smart-JP
+    use:
+      - 自建节点
+    filter: "美国|US|United States"
+  - name: Others
+    type: select
+    proxies:
+      - Proxy
+      - DIRECT
+      - Domestic
+  - name: AI Suite
+    type: select
+    proxies:
+      - Proxy
+      - Smart-US
+      - Smart-JP
+    use:
+      - 自建节点
+  - name: Google
+    type: select
+    proxies:
+      - Proxy
+      - Smart-US
+      - Smart-JP
+    use:
+      - 自建节点
+  - name: X
+    type: select
+    proxies:
+      - Proxy
+      - Smart-US
+      - Smart-JP
+    use:
+      - 自建节点
+  - name: Telegram
+    type: select
+    proxies:
+      - Proxy
+      - Smart-US
+      - Smart-JP
+    use:
+      - 自建节点
+  - name: Discord
+    type: select
+    proxies:
+      - Proxy
+      - DIRECT
+    use:
+      - 自建节点
+  - name: PayPal
+    type: select
+    proxies:
+      - DIRECT
+      - Proxy
+    use:
+      - 自建节点
+  - name: Microsoft
+    type: select
+    proxies:
+      - Proxy
+      - DIRECT
+  - name: Apple
+    type: select
+    proxies:
+      - Proxy
+      - DIRECT
+    use:
+      - 自建节点
+  - name: Google FCM
+    type: select
+    proxies:
+      - Proxy
+      - DIRECT
+    use:
+      - 自建节点
+  - name: Scholar
+    type: select
+    proxies:
+      - DIRECT
+      - Proxy
+    use:
+      - 自建节点
+  - name: Steam
+    type: select
+    proxies:
+      - Proxy
+      - DIRECT
+    use:
+      - 自建节点
+  - name: Apple News
+    type: select
+    proxies:
+      - Proxy
+      - DIRECT
+    use:
+      - 自建节点
+  - name: Crypto
+    type: select
+    proxies:
+      - Proxy
+      - DIRECT
+    use:
+      - 自建节点
+  - name: Spotify
+    type: select
+    proxies:
+      - Global TV
+    use:
+      - 自建节点
+  - name: Youtube
+    type: select
+    disable-udp: true
+    proxies:
+      - Global TV
+    use:
+      - 自建节点
+  - name: TikTok
+    type: select
+    proxies:
+      - Global TV
+    use:
+      - 自建节点
+  - name: Apple TV
+    type: select
+    proxies:
+      - Global TV
+      - DIRECT
+    use:
+      - 自建节点
+  - name: Netflix
+    type: select
+    proxies:
+      - Global TV
+    use:
+      - 自建节点
+  - name: Bilibili
+    type: select
+    proxies:
+      - CN Mainland TV
+      - DIRECT
+    use:
+      - 自建节点
+  - name: HBO Max
+    type: select
+    proxies:
+      - Global TV
+    use:
+      - 自建节点
+  - name: Disney Plus
+    type: select
+    proxies:
+      - Global TV
+    use:
+      - 自建节点
+  - name: Discovery Plus
+    type: select
+    proxies:
+      - Global TV
+    use:
+      - 自建节点
+  - name: DAZN
+    type: select
+    proxies:
+      - Global TV
+    use:
+      - 自建节点
+  - name: Bahamut
+    type: select
+    proxies:
+      - Global TV
+    use:
+      - 自建节点
+  - name: Speedtest
+    type: select
+    proxies:
+      - DIRECT
+    use:
+      - 自建节点
+  - name: AdBlock
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+      - Proxy
+rules:
+- RULE-SET,Speedtest,Speedtest
+- RULE-SET,AdBlock,AdBlock
+- RULE-SET,OpenAI,AI Suite
+- RULE-SET,Claude,AI Suite
+- RULE-SET,X,X
+- RULE-SET,Telegram,Telegram
+- RULE-SET,Discord,Discord
+- RULE-SET,PayPal,PayPal
+- RULE-SET,Google FCM,Google FCM
+- RULE-SET,Scholar,Scholar
+- RULE-SET,Steam,Steam
+- RULE-SET,Apple News,Apple News
+- RULE-SET,Crypto,Crypto
+- RULE-SET,Facebook,Global WEB
+- RULE-SET,GitHub,Global WEB
+- RULE-SET,Cloudflare,Global WEB
+- RULE-SET,IMDB,Global WEB
+- RULE-SET,TMDB,Global WEB
+- RULE-SET,LastFM,Global WEB
+- RULE-SET,Reddit,Global WEB
+- RULE-SET,Pinterest,Global WEB
+- RULE-SET,Docker,Global WEB
+- RULE-SET,Oracle,Global WEB
+- RULE-SET,Zoho,Global WEB
+- RULE-SET,Protonmail,Global WEB
+- RULE-SET,Spotify,Spotify
+- RULE-SET,YouTube,Youtube
+- RULE-SET,TikTok,TikTok
+- RULE-SET,Apple TV,Apple TV
+- RULE-SET,Netflix,Netflix
+- RULE-SET,Bilibili,Bilibili
+- RULE-SET,HBOUSA,HBO Max
+- RULE-SET,Disney Plus,Disney Plus
+- RULE-SET,Discovery Plus,Discovery Plus
+- RULE-SET,DAZN,DAZN
+- RULE-SET,Bahamut,Bahamut
+- RULE-SET,IQIYI,CN Mainland TV
+- RULE-SET,Letv,CN Mainland TV
+- RULE-SET,Netease Music,CN Mainland TV
+- RULE-SET,Tencent Video,CN Mainland TV
+- RULE-SET,WeTV,CN Mainland TV
+- RULE-SET,Youku,CN Mainland TV
+- RULE-SET,IPTVMainland,CN Mainland TV
+- RULE-SET,IPTVMainland_IP,CN Mainland TV
+- RULE-SET,Abema TV,Asian TV
+- RULE-SET,DMM,Asian TV
+- RULE-SET,Hulu Japan,Asian TV
+- RULE-SET,Japonx,Asian TV
+- RULE-SET,JOOX,Asian TV
+- RULE-SET,KKBOX,Asian TV
+- RULE-SET,KKTV,Asian TV
+- RULE-SET,Line TV,Asian TV
+- RULE-SET,myTV SUPER,Asian TV
+- RULE-SET,Niconico,Asian TV
+- RULE-SET,ViuTV,Asian TV
+- RULE-SET,ABC,Global TV
+- RULE-SET,PrimeVideo,Global TV
+- RULE-SET,BBC,Global TV
+- RULE-SET,EncoreTVB,Global TV
+- RULE-SET,FOXPlus,Global TV
+- RULE-SET,FOXNOW,Global TV
+- RULE-SET,Hulu USA,Global TV
+- RULE-SET,PandoraTV,Global TV
+- RULE-SET,PBS,Global TV
+- RULE-SET,Soundcloud,Global TV
+- RULE-SET,Google,Google
+- RULE-SET,Microsoft,Microsoft
+- RULE-SET,Apple,Apple
+- RULE-SET,Global,Proxy
+- RULE-SET,LAN,DIRECT
+- RULE-SET,Synology,Domestic
+- RULE-SET,QuickConnect,Domestic
+- RULE-SET,China,Domestic
+- RULE-SET,China IPs,Domestic
+- GEOIP,CN,Domestic
+- GEOSITE,CN,Domestic
+- MATCH,Others
+rule-providers:
+  Speedtest:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Speedtest/Speedtest.yaml
+    path: "./rule_provider/Speedtest.yaml"
+    interval: 86400
+  AdBlock:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising.yaml
+    path: "./rule_provider/AdBlock.yaml"
+    interval: 86400
+  OpenAI:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.yaml
+    path: "./rule_provider/OpenAI.yaml"
+    interval: 86400
+  Claude:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml
+    path: "./rule_provider/Claude.yaml"
+    interval: 86400
+  X:
+    type: http
+    behavior: classical
+    path: "./rule_provider/X.yaml"
+    format: yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Twitter/Twitter.yaml
+    interval: 86400
+  Telegram:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml
+    path: "./rule_provider/Telegram.yaml"
+    interval: 86400
+  Discord:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Discord/Discord.yaml
+    path: "./rule_provider/Discord.yaml"
+    interval: 86400
+  PayPal:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PayPal/PayPal.yaml
+    path: "./rule_provider/PayPal.yaml"
+    interval: 86400
+  Google FCM:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GoogleFCM/GoogleFCM.yaml
+    path: "./rule_provider/GoogleFCM.yaml"
+    interval: 86400
+  Scholar:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalScholar/GlobalScholar.yaml
+    path: "./rule_provider/Scholar.yaml"
+    interval: 86400
+  Steam:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.yaml
+    path: "./rule_provider/Steam.yaml"
+    interval: 86400
+  Apple News:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppleNews/AppleNews.yaml
+    path: "./rule_provider/AppleNews.yaml"
+    interval: 86400
+  Crypto:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Crypto/Crypto.yaml
+    path: "./rule_provider/Crypto.yaml"
+    interval: 86400
+  Facebook:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.yaml
+    path: "./rule_provider/Facebook.yaml"
+    interval: 86400
+  GitHub:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml
+    path: "./rule_provider/GitHub.yaml"
+    interval: 86400
+  Cloudflare:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflare/Cloudflare.yaml
+    path: "./rule_provider/Cloudflare.yaml"
+    interval: 86400
+  IMDB:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/IMDB/IMDB.yaml
+    path: "./rule_provider/IMDB.yaml"
+    interval: 86400
+  TMDB:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Tmdb/Tmdb.yaml
+    path: "./rule_provider/Tmdb.yaml"
+    interval: 86400
+  LastFM:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/LastFM/LastFM.yaml
+    path: "./rule_provider/LastFM.yaml"
+    interval: 86400
+  Reddit:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Reddit/Reddit.yaml
+    path: "./rule_provider/Reddit.yaml"
+    interval: 86400
+  Pinterest:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Pinterest/Pinterest.yaml
+    path: "./rule_provider/Pinterest.yaml"
+    interval: 86400
+  Docker:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Docker/Docker.yaml
+    path: "./rule_provider/Docker.yaml"
+    interval: 86400
+  Oracle:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Oracle/Oracle.yaml
+    path: "./rule_provider/Oracle.yaml"
+    interval: 86400
+  Zoho:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Zoho/Zoho.yaml
+    path: "./rule_provider/Zoho.yaml"
+    interval: 86400
+  Protonmail:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Protonmail/Protonmail.yaml
+    path: "./rule_provider/Protonmail.yaml"
+    interval: 86400
+  Synology:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Synology/Synology.yaml
+    path: "./rule_provider/Synology.yaml"
+    interval: 86400
+  QuickConnect:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/QuickConnect/QuickConnect.yaml
+    path: "./rule_provider/QuickConnect.yaml"
+    interval: 86400
+  Spotify:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml
+    path: "./rule_provider/Spotify.yaml"
+    interval: 86400
+  YouTube:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml
+    path: "./rule_provider/YouTube.yaml"
+    interval: 86400
+  TikTok:
+    type: http
+    behavior: classical
+    path: "./rule_provider/TikTok.yaml"
+    format: yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.yaml
+    interval: 86400
+  Apple TV:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppleTV/AppleTV.yaml
+    path: "./rule_provider/AppleTV.yaml"
+    interval: 86400
+  Netflix:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.yaml
+    path: "./rule_provider/Netflix.yaml"
+    interval: 86400
+  Bilibili:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml
+    path: "./rule_provider/Bilibili.yaml"
+    interval: 86400
+  HBOUSA:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/HBOUSA/HBOUSA.yaml
+    path: "./rule_provider/HBOUSA.yaml"
+    interval: 86400
+  Disney Plus:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.yaml
+    path: "./rule_provider/Disney_Plus.yaml"
+    interval: 86400
+  Discovery Plus:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/DiscoveryPlus/DiscoveryPlus.yaml
+    path: "./rule_provider/Discovery_Plus.yaml"
+    interval: 86400
+  DAZN:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/DAZN/DAZN.yaml
+    path: "./rule_provider/DAZN.yaml"
+    interval: 86400
+  Bahamut:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bahamut/Bahamut.yaml
+    path: "./rule_provider/Bahamut.yaml"
+    interval: 86400
+  IQIYI:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/iQIYI/iQIYI.yaml
+    path: "./rule_provider/iQIYI.yaml"
+    interval: 86400
+  Letv:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/LeTV/LeTV.yaml
+    path: "./rule_provider/LeTV.yaml"
+    interval: 86400
+  Netease Music:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.yaml
+    path: "./rule_provider/NetEaseMusic.yaml"
+    interval: 86400
+  Tencent Video:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TencentVideo/TencentVideo.yaml
+    path: "./rule_provider/TencentVideo.yaml"
+    interval: 86400
+  WeTV:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeTV/WeTV.yaml
+    path: "./rule_provider/WeTV.yaml"
+    interval: 86400
+  Youku:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Youku/Youku.yaml
+    path: "./rule_provider/Youku.yaml"
+    interval: 86400
+  IPTVMainland:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/IPTVMainland/IPTVMainland.yaml
+    path: "./rule_provider/IPTVMainland.yaml"
+    interval: 86400
+  IPTVMainland_IP:
+    type: http
+    behavior: ipcidr
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/IPTVMainland/IPTVMainland_IP.yaml
+    path: "./rule_provider/IPTVMainland_IP.yaml"
+    interval: 86400
+  Abema TV:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Abema/Abema.yaml
+    path: "./rule_provider/Abema.yaml"
+    interval: 86400
+  DMM:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/DMM/DMM.yaml
+    path: "./rule_provider/DMM.yaml"
+    interval: 86400
+  Hulu Japan:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/HuluJP/HuluJP.yaml
+    path: "./rule_provider/HuluJP.yaml"
+    interval: 86400
+  Japonx:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Japonx/Japonx.yaml
+    path: "./rule_provider/Japonx.yaml"
+    interval: 86400
+  JOOX:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/JOOX/JOOX.yaml
+    path: "./rule_provider/JOOX.yaml"
+    interval: 86400
+  KKBOX:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/KKBOX/KKBOX.yaml
+    path: "./rule_provider/KKBOX.yaml"
+    interval: 86400
+  KKTV:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/KKTV/KKTV.yaml
+    path: "./rule_provider/KKTV.yaml"
+    interval: 86400
+  Line TV:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/LineTV/LineTV.yaml
+    path: "./rule_provider/Line_TV.yaml"
+    interval: 86400
+  myTV SUPER:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/myTVSUPER/myTVSUPER.yaml
+    path: "./rule_provider/myTV_SUPER.yaml"
+    interval: 86400
+  Niconico:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Niconico/Niconico.yaml
+    path: "./rule_provider/Niconico.yaml"
+    interval: 86400
+  ViuTV:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ViuTV/ViuTV.yaml
+    path: "./rule_provider/ViuTV.yaml"
+    interval: 86400
+  ABC:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ABC/ABC.yaml
+    path: "./rule_provider/ABC.yaml"
+    interval: 86400
+  PrimeVideo:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrimeVideo/PrimeVideo.yaml
+    path: "./rule_provider/PrimeVideo.yaml"
+    interval: 86400
+  BBC:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BBC/BBC.yaml
+    path: "./rule_provider/BBC.yaml"
+    interval: 86400
+  EncoreTVB:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EncoreTVB/EncoreTVB.yaml
+    path: "./rule_provider/EncoreTVB.yaml"
+    interval: 86400
+  FOXPlus:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/FOXPlus/FOXPlus.yaml
+    path: "./rule_provider/FOXPlus.yaml"
+    interval: 86400
+  FOXNOW:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/FOXNOW/FOXNOW.yaml
+    path: "./rule_provider/FOXNOW.yaml"
+    interval: 86400
+  Hulu USA:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/HuluUSA/HuluUSA.yaml
+    path: "./rule_provider/HuluUSA.yaml"
+    interval: 86400
+  PandoraTV:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PandoraTV/PandoraTV.yaml
+    path: "./rule_provider/PandoraTV.yaml"
+    interval: 86400
+  PBS:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PBS/PBS.yaml
+    path: "./rule_provider/PBS.yaml"
+    interval: 86400
+  Soundcloud:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SoundCloud/SoundCloud.yaml
+    path: "./rule_provider/Soundcloud.yaml"
+    interval: 86400
+  Google:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.yaml
+    path: "./rule_provider/Google.yaml"
+    interval: 86400
+  Microsoft:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml
+    path: "./rule_provider/Microsoft.yaml"
+    interval: 86400
+  Apple:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml
+    path: "./rule_provider/Apple.yaml"
+    interval: 86400
+  Global:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global.yaml
+    path: "./rule_provider/Global.yaml"
+    interval: 86400
+  LAN:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml
+    path: "./rule_provider/Lan.yaml"
+    interval: 86400
+  China:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China.yaml
+    path: "./rule_provider/China.yaml"
+    interval: 86400
+  China IPs:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaIPs/ChinaIPs_IP.yaml
+    path: "./rule_provider/ChinaIPs_IP.yaml"
+    interval: 86400
+
+  
+  
