@@ -286,17 +286,18 @@ rules:
 - RULE-SET,Oracle,Global WEB
 - RULE-SET,Zoho,Global WEB
 - RULE-SET,Protonmail,Global WEB
+- RULE-SET,Bilibili,Bilibili
 - RULE-SET,Spotify,Spotify
 - RULE-SET,YouTube,Youtube
 - RULE-SET,TikTok,TikTok
 - RULE-SET,Apple TV,Apple TV
 - RULE-SET,Netflix,Netflix
-- RULE-SET,Bilibili,Bilibili
 - RULE-SET,HBOUSA,HBO Max
 - RULE-SET,Disney Plus,Disney Plus
 - RULE-SET,Discovery Plus,Discovery Plus
 - RULE-SET,DAZN,DAZN
 - RULE-SET,Bahamut,Bahamut
+- RULE-SET,DouYin,CN Mainland TV
 - RULE-SET,IQIYI,CN Mainland TV
 - RULE-SET,Letv,CN Mainland TV
 - RULE-SET,Netease Music,CN Mainland TV
@@ -534,12 +535,6 @@ rule-providers:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.yaml
     path: "./rule_provider/Netflix.yaml"
     interval: 86400
-  Bilibili:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml
-    path: "./rule_provider/Bilibili.yaml"
-    interval: 86400
   HBOUSA:
     type: http
     behavior: classical
@@ -569,6 +564,18 @@ rule-providers:
     behavior: classical
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bahamut/Bahamut.yaml
     path: "./rule_provider/Bahamut.yaml"
+    interval: 86400
+  DouYin:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/DouYin/DouYin.yaml
+    path: "./rule_provider/DouYin.yaml"
+    interval: 86400
+  Bilibili:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml
+    path: "./rule_provider/Bilibili.yaml"
     interval: 86400
   IQIYI:
     type: http
