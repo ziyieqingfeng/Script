@@ -1,7 +1,7 @@
 proxy-providers:
   自建节点:
     type: http
-    url: "https://xxxxxxx.com/"                 # 填写你的代理订阅地址，确保返回的内容是 Clash 兼容的代理列表，可以用sub-store搭建
+    url: "https://xxxxxxx.com/"                 # 关键修改:填写你的代理订阅地址，确保返回的内容是 Clash 兼容的代理列表，可以用sub-store搭建
     path: "./proxy_provider/自建节点.yaml"
     interval: 3600
     health-check:
@@ -17,7 +17,7 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 150
-    policy-priority: Sky:1.1;Web:1                # 节点权重:openclash内有窗口填写，但会影响所有smart组，所以在这里设置只影响这个组
+    policy-priority: Sky:1.1;Web:1                # 节点权重:openclash内有窗口填写，但会影响所有smart组，所以在这里设置只影响这个组，依照自己节点命名修改.
   - name: Smart-JP
     type: smart
     use:
@@ -26,7 +26,7 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 150
-    policy-priority: Dip:1;Sip:1 
+    policy-priority: Dip:1;Sip:1                  # 节点权重:openclash内有窗口填写，但会影响所有smart组，所以在这里设置只影响这个组，依照自己节点命名修改.
   - name: Smart-Auto
     type: smart
     use:
@@ -34,7 +34,7 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 150
-    policy-priority: 美国:1.3;日本:0.8 
+    policy-priority: 美国:1.3;日本:0.8             # 节点权重:openclash内有窗口填写，但会影响所有smart组，所以在这里设置只影响这个组，依照自己节点命名修改.
   - name: Proxy
     type: select
     proxies:
