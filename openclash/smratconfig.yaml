@@ -8,122 +8,122 @@ proxy-providers:
       enable: true
       url: "http://www.gstatic.com/generate_204"
       interval: 300
-proxy-groups:
-  - name: Smart-US
-    type: smart
+proxy-groups:      # 策略组配置以及排序
+  - name: 负载均衡-US
+    type: load-balance
+    strategy: consistent-hashing     # 使用一致性哈希，避免跳 IP
     use:
       - 自建节点
-    filter: "美国|US|United States"               # 关键修改:只使用名字中包含“美国”、“US”或“United States”的节点
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 150
-    policy-priority: Sky:1.1;Web:1                # 节点权重:openclash内有窗口填写，但会影响所有smart组，所以在这里设置只影响这个组，依照自己节点命名修改.
-  - name: Smart-JP
-    type: smart
+    filter: "美国|US|United States"    # 关键修改:只使用名字中包含“美国”、“US”或“United States”的节点
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300      # 测速间隔300秒
+      lazy: true     # 不使用不测速
+  - name: 负载均衡-JP
+    type: load-balance
+    strategy: consistent-hashing 
+    use:
+      - 自建节点
+    filter: "日本|JP|Japan"    
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+      lazy: true 
+  - name: 故障切换-US
+    type: fallback
+    use:
+      - 自建节点
+    filter: "美国|US|United States"        # 关键修改:只使用名字中包含“美国”、“US”或“United States”的节点
+    url: http://cp.cloudflare.com/generate_204
+    interval: 300        # 测速间隔300秒
+    timeout: 1000        # 核心参数：如果 1 秒没响应，才认为节点坏了
+  - name: 故障切换-JP
+    type: fallback
     use:
       - 自建节点
     filter: "日本|JP|Japan"
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 150
-    policy-priority: Dip:1;Sip:1                  # 节点权重:openclash内有窗口填写，但会影响所有smart组，所以在这里设置只影响这个组，依照自己节点命名修改.
+    url: http://cp.cloudflare.com/generate_204
+    interval: 300        # 测速间隔300秒
+    timeout: 1000        # 核心参数：如果 1 秒没响应，才认为节点坏了     
   - name: Smart-Auto
     type: smart
     use:
       - 自建节点
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 150
-    policy-priority: 美国:1.3;日本:0.8             # 节点权重:openclash内有窗口填写，但会影响所有smart组，所以在这里设置只影响这个组，依照自己节点命名修改.
+    url: http://cp.cloudflare.com/generate_204
+    interval: 300     # 测速间隔300秒
+    tolerance: 300      # 延迟容忍度300ms     
+    policy-priority: 美国:1.3;日本:0.8          # 节点权重:openclash内有窗口填写，但会影响所有smart组，所以在这里设置只影响这个组，依照自己节点命名修改.
   - name: Proxy
     type: select
     proxies:
       - Smart-Auto
-      - Smart-US
-      - Smart-JP
+      - 故障切换-US
+      - 故障切换-JP
+      - 负载均衡-US
+      - 负载均衡-JP
       - DIRECT
     use:
       - 自建节点
-  - name: Domestic
+  - name: 中土通达
     type: select
     proxies:
       - DIRECT
       - Proxy
-  - name: Global WEB
+  - name: 社交媒体
     type: select
     proxies:
       - Proxy
-      - Smart-US
-      - Smart-JP
-      - DIRECT
+      - 故障切换-US
+      - 故障切换-JP
     use:
       - 自建节点
-  - name: CN Mainland TV
+  - name: 寰宇纵横
+    type: select
+    proxies:
+      - Proxy
+      - 故障切换-US
+      - 故障切换-JP
+    use:
+      - 自建节点
+  - name: 华夏视听
     type: select
     proxies:
       - DIRECT
       - Proxy
-  - name: Asian TV
+  - name: 东方视听
     type: select
     proxies:
       - Proxy
-      - Smart-JP
-      - Smart-US
+      - 故障切换-JP
+      - 故障切换-US
     use:
       - 自建节点
     filter: "日本|JP|Japan"
-  - name: Global TV
+  - name: 环球视听
     type: select
     proxies:
       - Proxy
-      - Smart-US
-      - Smart-JP
+      - 故障切换-US
+      - 故障切换-JP
     use:
       - 自建节点
     filter: "美国|US|United States"
-  - name: Others
-    type: select
-    proxies:
-      - Proxy
-      - DIRECT
-      - Domestic
   - name: AI Suite
     type: select
     proxies:
       - Proxy
-      - Smart-US
-      - Smart-JP
+      - 故障切换-US
+      - 故障切换-JP
     use:
       - 自建节点
   - name: Google
     type: select
     proxies:
       - Proxy
-      - Smart-US
-      - Smart-JP
-    use:
-      - 自建节点
-  - name: X
-    type: select
-    proxies:
-      - Proxy
-      - Smart-US
-      - Smart-JP
-    use:
-      - 自建节点
-  - name: Telegram
-    type: select
-    proxies:
-      - Proxy
-      - Smart-US
-      - Smart-JP
-    use:
-      - 自建节点
-  - name: Discord
-    type: select
-    proxies:
-      - Proxy
-      - DIRECT
+      - 故障切换-US
+      - 故障切换-JP
     use:
       - 自建节点
   - name: PayPal
@@ -159,6 +159,14 @@ proxy-groups:
       - Proxy
     use:
       - 自建节点
+  - name: TeraBox
+    type: select
+    proxies:
+      - 负载均衡-US
+      - 故障切换-US
+    use:
+      - 自建节点
+    filter: "美国|US|United States"
   - name: Steam
     type: select
     proxies:
@@ -183,109 +191,123 @@ proxy-groups:
   - name: Bilibili
     type: select
     proxies:
-      - CN Mainland TV
+      - 华夏视听
     use:
       - 自建节点
   - name: Spotify
     type: select
     proxies:
-      - Global TV
+      - 环球视听
     use:
       - 自建节点
   - name: Youtube
     type: select
     disable-udp: true
     proxies:
-      - Global TV
+      - 环球视听
     use:
       - 自建节点
   - name: TikTok
     type: select
     proxies:
-      - Global TV
+      - 环球视听
     use:
       - 自建节点
   - name: Apple TV
     type: select
     proxies:
-      - Global TV
+      - 环球视听
       - DIRECT
     use:
       - 自建节点
   - name: Netflix
     type: select
     proxies:
-      - Global TV
+      - 环球视听
     use:
       - 自建节点
   - name: HBO Max
     type: select
     proxies:
-      - Global TV
+      - 环球视听
     use:
       - 自建节点
   - name: Disney Plus
     type: select
     proxies:
-      - Global TV
+      - 环球视听
     use:
       - 自建节点
   - name: Discovery Plus
     type: select
     proxies:
-      - Global TV
+      - 环球视听
     use:
       - 自建节点
   - name: DAZN
     type: select
     proxies:
-      - Global TV
+      - 环球视听
     use:
       - 自建节点
   - name: Bahamut
     type: select
     proxies:
-      - Global TV
+      - 环球视听
     use:
       - 自建节点
-  - name: Speedtest
+  - name: 网络测速
     type: select
     proxies:
       - DIRECT
     use:
       - 自建节点
-  - name: AdBlock
+  - name: 广告拦截
     type: select
     proxies:
       - REJECT
       - DIRECT
       - Proxy
-rules:
-- RULE-SET,Speedtest,Speedtest
-- RULE-SET,AdBlock,AdBlock
+  - name: 漏网之鱼
+    type: select
+    proxies:
+      - Proxy
+      - DIRECT
+      - 中土通达
+rules:       # openclash适配规则逻辑为由上到下依次适配，因此规则顺序非常重要，越宽泛的规则应越往后放，防止精确规则失效
+# 功能策略规则
+- RULE-SET,Speedtest,网络测速
+- RULE-SET,AdBlock,广告拦截
+# 精准网站策略规则
 - RULE-SET,OpenAI,AI Suite
 - RULE-SET,Claude,AI Suite
-- RULE-SET,X,X
-- RULE-SET,Telegram,Telegram
-- RULE-SET,Discord,Discord
 - RULE-SET,PayPal,PayPal
 - RULE-SET,Google FCM,Google FCM
 - RULE-SET,Scholar,Scholar
+- RULE-SET,TeraBox,TeraBox
 - RULE-SET,Steam,Steam
 - RULE-SET,Apple News,Apple News
 - RULE-SET,Crypto,Crypto
-- RULE-SET,Facebook,Global WEB
-- RULE-SET,GitHub,Global WEB
-- RULE-SET,Cloudflare,Global WEB
-- RULE-SET,IMDB,Global WEB
-- RULE-SET,TMDB,Global WEB
-- RULE-SET,LastFM,Global WEB
-- RULE-SET,Reddit,Global WEB
-- RULE-SET,Pinterest,Global WEB
-- RULE-SET,Docker,Global WEB
-- RULE-SET,Oracle,Global WEB
-- RULE-SET,Zoho,Global WEB
-- RULE-SET,Protonmail,Global WEB
+- RULE-SET,Synology,中土通达
+- RULE-SET,QuickConnect,中土通达
+# 社交媒体策略规则
+- RULE-SET,X,社交媒体
+- RULE-SET,Facebook,社交媒体
+- RULE-SET,Telegram,社交媒体
+- RULE-SET,Discord,社交媒体
+- RULE-SET,Reddit,社交媒体
+- RULE-SET,Pinterest,社交媒体
+# 寰宇纵横策略规则
+- RULE-SET,GitHub,寰宇纵横
+- RULE-SET,Cloudflare,寰宇纵横
+- RULE-SET,IMDB,寰宇纵横
+- RULE-SET,TMDB,寰宇纵横
+- RULE-SET,LastFM,寰宇纵横
+- RULE-SET,Docker,寰宇纵横
+- RULE-SET,Oracle,寰宇纵横
+- RULE-SET,Zoho,寰宇纵横
+- RULE-SET,Protonmail,寰宇纵横
+# 精准媒体策略规则
 - RULE-SET,Bilibili,Bilibili
 - RULE-SET,Spotify,Spotify
 - RULE-SET,YouTube,Youtube
@@ -297,49 +319,53 @@ rules:
 - RULE-SET,Discovery Plus,Discovery Plus
 - RULE-SET,DAZN,DAZN
 - RULE-SET,Bahamut,Bahamut
-- RULE-SET,DouYin,CN Mainland TV
-- RULE-SET,IQIYI,CN Mainland TV
-- RULE-SET,Letv,CN Mainland TV
-- RULE-SET,Netease Music,CN Mainland TV
-- RULE-SET,Tencent Video,CN Mainland TV
-- RULE-SET,WeTV,CN Mainland TV
-- RULE-SET,Youku,CN Mainland TV
-- RULE-SET,IPTVMainland,CN Mainland TV
-- RULE-SET,IPTVMainland_IP,CN Mainland TV
-- RULE-SET,Abema TV,Asian TV
-- RULE-SET,DMM,Asian TV
-- RULE-SET,Hulu Japan,Asian TV
-- RULE-SET,Japonx,Asian TV
-- RULE-SET,JOOX,Asian TV
-- RULE-SET,KKBOX,Asian TV
-- RULE-SET,KKTV,Asian TV
-- RULE-SET,Line TV,Asian TV
-- RULE-SET,myTV SUPER,Asian TV
-- RULE-SET,Niconico,Asian TV
-- RULE-SET,ViuTV,Asian TV
-- RULE-SET,ABC,Global TV
-- RULE-SET,PrimeVideo,Global TV
-- RULE-SET,BBC,Global TV
-- RULE-SET,EncoreTVB,Global TV
-- RULE-SET,FOXPlus,Global TV
-- RULE-SET,FOXNOW,Global TV
-- RULE-SET,Hulu USA,Global TV
-- RULE-SET,PandoraTV,Global TV
-- RULE-SET,PBS,Global TV
-- RULE-SET,Soundcloud,Global TV
+# 华夏视听策略规则
+- RULE-SET,DouYin,华夏视听
+- RULE-SET,IQIYI,华夏视听
+- RULE-SET,Letv,华夏视听
+- RULE-SET,Netease Music,华夏视听
+- RULE-SET,Tencent Video,华夏视听
+- RULE-SET,WeTV,华夏视听
+- RULE-SET,Youku,华夏视听
+- RULE-SET,IPTVMainland,华夏视听
+- RULE-SET,IPTVMainland_IP,华夏视听
+# 东方视听策略规则
+- RULE-SET,Abema TV,东方视听
+- RULE-SET,DMM,东方视听
+- RULE-SET,Hulu Japan,东方视听
+- RULE-SET,Japonx,东方视听
+- RULE-SET,JOOX,东方视听
+- RULE-SET,KKBOX,东方视听
+- RULE-SET,KKTV,东方视听
+- RULE-SET,Line TV,东方视听
+- RULE-SET,myTV SUPER,东方视听
+- RULE-SET,Niconico,东方视听
+- RULE-SET,ViuTV,东方视听
+# 环球视听策略规则
+- RULE-SET,ABC,环球视听
+- RULE-SET,PrimeVideo,环球视听
+- RULE-SET,BBC,环球视听
+- RULE-SET,EncoreTVB,环球视听
+- RULE-SET,FOXPlus,环球视听
+- RULE-SET,FOXNOW,环球视听
+- RULE-SET,Hulu USA,环球视听
+- RULE-SET,PandoraTV,环球视听
+- RULE-SET,PBS,环球视听
+- RULE-SET,Soundcloud,环球视听
+# 宽泛策略规则
 - RULE-SET,Google,Google
 - RULE-SET,Microsoft,Microsoft
 - RULE-SET,Apple,Apple
 - RULE-SET,Global,Proxy
 - RULE-SET,LAN,DIRECT
-- RULE-SET,Synology,Domestic
-- RULE-SET,QuickConnect,Domestic
-- RULE-SET,China,Domestic
-- RULE-SET,China IPs,Domestic
-- GEOIP,CN,Domestic
-- GEOSITE,CN,Domestic
-- MATCH,Others
+- RULE-SET,China,中土通达
+- RULE-SET,China IPs,中土通达
+- GEOIP,CN,中土通达
+- GEOSITE,CN,中土通达
+# 漏网之鱼
+- MATCH,漏网之鱼
 rule-providers:
+#############  功能策略规则  ###################
   Speedtest:
     type: http
     behavior: classical
@@ -352,6 +378,7 @@ rule-providers:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising.yaml
     path: "./rule_provider/AdBlock.yaml"
     interval: 86400
+#############  精准网站策略规则  ################
   OpenAI:
     type: http
     behavior: classical
@@ -364,25 +391,6 @@ rule-providers:
     behavior: classical
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml
     path: "./rule_provider/Claude.yaml"
-    interval: 86400
-  X:
-    type: http
-    behavior: classical
-    path: "./rule_provider/X.yaml"
-    format: yaml
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Twitter/Twitter.yaml
-    interval: 86400
-  Telegram:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml
-    path: "./rule_provider/Telegram.yaml"
-    interval: 86400
-  Discord:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Discord/Discord.yaml
-    path: "./rule_provider/Discord.yaml"
     interval: 86400
   PayPal:
     type: http
@@ -402,6 +410,12 @@ rule-providers:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalScholar/GlobalScholar.yaml
     path: "./rule_provider/Scholar.yaml"
     interval: 86400
+  TeraBox:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TeraBox/TeraBox.yaml
+    path: "./rule_provider/TeraBox.yaml"
+    interval: 86400
   Steam:
     type: http
     behavior: classical
@@ -420,12 +434,57 @@ rule-providers:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Crypto/Crypto.yaml
     path: "./rule_provider/Crypto.yaml"
     interval: 86400
+  Synology:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Synology/Synology.yaml
+    path: "./rule_provider/Synology.yaml"
+    interval: 86400
+  QuickConnect:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/QuickConnect/QuickConnect.yaml
+    path: "./rule_provider/QuickConnect.yaml"
+    interval: 86400
+#############  社交媒体策略规则  ################
+  X:
+    type: http
+    behavior: classical
+    path: "./rule_provider/X.yaml"
+    format: yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Twitter/Twitter.yaml
+    interval: 86400
   Facebook:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.yaml
     path: "./rule_provider/Facebook.yaml"
     interval: 86400
+  Telegram:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml
+    path: "./rule_provider/Telegram.yaml"
+    interval: 86400
+  Discord:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Discord/Discord.yaml
+    path: "./rule_provider/Discord.yaml"
+    interval: 86400
+  Reddit:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Reddit/Reddit.yaml
+    path: "./rule_provider/Reddit.yaml"
+    interval: 86400
+  Pinterest:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Pinterest/Pinterest.yaml
+    path: "./rule_provider/Pinterest.yaml"
+    interval: 86400
+#############  寰宇纵横策略规则  #############
   GitHub:
     type: http
     behavior: classical
@@ -456,18 +515,6 @@ rule-providers:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/LastFM/LastFM.yaml
     path: "./rule_provider/LastFM.yaml"
     interval: 86400
-  Reddit:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Reddit/Reddit.yaml
-    path: "./rule_provider/Reddit.yaml"
-    interval: 86400
-  Pinterest:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Pinterest/Pinterest.yaml
-    path: "./rule_provider/Pinterest.yaml"
-    interval: 86400
   Docker:
     type: http
     behavior: classical
@@ -492,18 +539,7 @@ rule-providers:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Protonmail/Protonmail.yaml
     path: "./rule_provider/Protonmail.yaml"
     interval: 86400
-  Synology:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Synology/Synology.yaml
-    path: "./rule_provider/Synology.yaml"
-    interval: 86400
-  QuickConnect:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/QuickConnect/QuickConnect.yaml
-    path: "./rule_provider/QuickConnect.yaml"
-    interval: 86400
+#############  精准媒体策略规则  ################
   Spotify:
     type: http
     behavior: classical
@@ -565,6 +601,7 @@ rule-providers:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bahamut/Bahamut.yaml
     path: "./rule_provider/Bahamut.yaml"
     interval: 86400
+#############  华夏视听策略规则  ##########
   DouYin:
     type: http
     behavior: classical
@@ -625,6 +662,7 @@ rule-providers:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/IPTVMainland/IPTVMainland_IP.yaml
     path: "./rule_provider/IPTVMainland_IP.yaml"
     interval: 86400
+#############  东方视听策略规则  ###############
   Abema TV:
     type: http
     behavior: classical
@@ -691,6 +729,7 @@ rule-providers:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ViuTV/ViuTV.yaml
     path: "./rule_provider/ViuTV.yaml"
     interval: 86400
+#############  环球视听策略规则  ###############
   ABC:
     type: http
     behavior: classical
@@ -751,6 +790,7 @@ rule-providers:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SoundCloud/SoundCloud.yaml
     path: "./rule_provider/Soundcloud.yaml"
     interval: 86400
+#############  宽泛策略规则  ####################
   Google:
     type: http
     behavior: classical
@@ -790,7 +830,7 @@ rule-providers:
     interval: 86400
   China IPs:
     type: http
-    behavior: classical
+    behavior: ipcidr
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaIPs/ChinaIPs_IP.yaml
     path: "./rule_provider/ChinaIPs_IP.yaml"
     interval: 86400
