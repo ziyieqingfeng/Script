@@ -15,22 +15,18 @@ proxy-groups:      # 策略组配置以及排序
     use:
       - 自建节点
     filter: "美国|US|United States"    # 关键修改:只使用名字中包含“美国”、“US”或“United States”的节点
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300      # 测速间隔300秒
-      lazy: true     # 不使用不测速
+    url: http://cp.cloudflare.com/generate_204
+    interval: 300      # 测速间隔300秒
+    lazy: true     # 不使用不测速
   - name: 负载均衡-JP
     type: load-balance
     strategy: consistent-hashing 
     use:
       - 自建节点
     filter: "日本|JP|Japan"    
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 300
-      lazy: true 
+    url: http://cp.cloudflare.com/generate_204
+    interval: 300
+    lazy: true 
   - name: 故障切换-US
     type: fallback
     use:
