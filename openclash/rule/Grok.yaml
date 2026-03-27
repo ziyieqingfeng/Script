@@ -1,0 +1,14 @@
+# NAME: Grok
+# AUTHOR: ziyieqingfeng
+# REPO: https://github.com/ziyieqingfeng/Script
+# UPDATED: 2026-03-27 16:02:50
+# DOMAIN: 0
+# DOMAIN-SUFFIX: 4
+# IP-CIDR: 1
+# TOTAL: 5
+payload:
+  - DOMAIN-SUFFIX,x.ai
+  - DOMAIN-SUFFIX,grok.com
+  - DOMAIN-SUFFIX,featureassets.org
+  - DOMAIN-SUFFIX,xai.chronosphere.io
+  - IP-CIDR,17.253.4.125
