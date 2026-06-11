@@ -1,8 +1,8 @@
 # Apple News
-DOMAIN,gateway.icloud.com,PROXY
-DOMAIN,gspe1-ssl.ls.apple.com,PROXY
-DOMAIN-SUFFIX,apple.news,PROXY
-DOMAIN,apple.comscoreresearch.com,PROXY
-DOMAIN,news-client.apple.com,PROXY
-DOMAIN,news-events.apple.com,PROXY
-DOMAIN,news-edge.apple.com,PROXY
+DOMAIN,gateway.icloud.com,proxy
+DOMAIN,gspe1-ssl.ls.apple.com,proxy
+DOMAIN-SUFFIX,apple.news,proxy
+DOMAIN,apple.comscoreresearch.com,proxy
+DOMAIN,news-client.apple.com,proxy
+DOMAIN,news-events.apple.com,proxy
+DOMAIN,news-edge.apple.com,proxy
