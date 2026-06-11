@@ -1,5 +1,6 @@
 #苹果APNs推送
 host-suffix,push.apple.com,Apple Push
+host-suffix,courier.push.apple.com,Apple Push
 host-suffix,akadns.net,Apple Push
 host-keyword,apple.com.edgekey.net,Apple Push
 
