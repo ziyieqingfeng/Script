@@ -1,18 +1,18 @@
 # 联合早报
-HOST-SUFFIX,zaobao.com.sg,proxy
+host-suffix,zaobao.com.sg,proxy
 
 # t-mobile WIFI calling
-IP-CIDR,66.94.0.0/19,proxy
-IP-CIDR,206.29.177.36/32,proxy
-IP-CIDR,208.54.0.0/16,proxy
+ip-cidr,66.94.0.0/19,proxy
+ip-cidr,206.29.177.36/32,proxy
+ip-cidr,208.54.0.0/16,proxy
 
-DOMAIN-SUFFIX,t-mobile.com,proxy
-DOMAIN-SUFFIX,crl.t-mobile.com,proxy
-DOMAIN-SUFFIX,eas3.msg.t-mobile.com,proxy
-DOMAIN-SUFFIX,mascns.t-mobile.com,proxy
-DOMAIN-SUFFIX,ns.sipgeo.t-mobile.com,proxy
+host-suffix,t-mobile.com,proxy
+host-suffix,crl.t-mobile.com,proxy
+host-suffix,eas3.msg.t-mobile.com,proxy
+host-suffix,mascns.t-mobile.com,proxy
+host-suffix,ns.sipgeo.t-mobile.com,proxy
 
-DOMAIN-SUFFIX,epdg.epc.mnc240.mcc310.pub.3gppnetwork.org,proxy
-DOMAIN-SUFFIX,epdg.epc.mnc260.mcc310.pub.3gppnetwork.org,proxy
-DOMAIN-SUFFIX,ss.epdg.epc.mnc260.mcc310.pub.3gppnetwork.org,proxy
-DOMAIN-SUFFIX,ss.epdg.epc.geo.mnc260.mcc310.pub.3gppnetwork.org,proxy
+host-suffix,epdg.epc.mnc240.mcc310.pub.3gppnetwork.org,proxy
+host-suffix,epdg.epc.mnc260.mcc310.pub.3gppnetwork.org,proxy
+host-suffix,ss.epdg.epc.mnc260.mcc310.pub.3gppnetwork.org,proxy
+host-suffix,ss.epdg.epc.geo.mnc260.mcc310.pub.3gppnetwork.org,proxy
